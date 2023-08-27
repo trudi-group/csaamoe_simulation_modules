@@ -1,0 +1,64 @@
+downloads:
+     update: True
+     timestamp_from: 1279463607
+     timestamp_to: 1606922707
+     db_name: cryptocurrency_silo
+     db_dir: ../../../../archive/
+     coingecko:
+          path_to_save_csv_to: ../../../../archive/marketdata_coingecko/
+          mkt_cap_thresh: 0
+          full_request_number: 6000
+          answers_per_page: 250
+          ids: bitcoin
+     quandl:
+          api_key_path: /home/ingolf/Dokumente/IGAP/unsynced/keys_apis/quandl.txt
+          path_to_save_csv_to: ../../../../archive/marketdata_coingecko/
+          ids: BCHAIN/ETRAV, BCHAIN/ETRVU, BCHAIN/TOTBC, BCHAIN/DIFF, BCHAIN/HRATE
+     yfinance:
+          obj_name: data_yfinance
+          path_to_save_csv_to: ../../../../archive/marketdata_yfinance/
+     crix:
+          loadname: crix
+          loadpath: ../../../../archive/marketdata_crix/
+          savepath: ../../../../archive/marketdata_crix/
+          savename: crix
+     blockwatch:
+          api_key_path: /home/ingolf/Dokumente/IGAP/unsynced/keys_apis/blockwatch.txt
+          path_to_save_csv_to: ../../../../archive/onchaindata_blockwatch/
+          eod_supply_name: btc_eod_supply_stats.csv
+     cbeci:
+          path_to_save_csv_to: ../../../../archive/energyconsumption_cbeci/
+          cbeci_sha_list_name: CBECI_SHA_256_mining_eqp_list.csv
+
+fv_study:
+     db_name: bitcoin_fv_study
+     db_dir: ../../../../archive/
+
+prep_and_cleaning:
+     market_raw_data_dir: ../../../../archive/marketdata_coingecko/
+     source_of_stablecoin_ids: cg_data_gen
+     path_to_save: ../02_raw_data/
+     filename: inputdata_test
+     cleaning:
+          min_mcap_threshold: 1000000
+          min_vol_threshold: 25000
+          min_rows_threshold: 100
+          outlier_threshold_for_zscore: 5
+          outlier_cols_to_be_treated: see_script
+     fvalue:
+          c_and_c_2018:
+               precision: 0.01
+               scaling: 100
+               minobs: 5
+          h_2018:
+               eff_choice: high
+               energycost_per_kwh: 0.135
+
+descriptives:
+     exog_pure: V_fv,V_trend_prices_st_3,csupply,vola_btc
+     exog_sq: V_fv_p2,V_trend_prices_st_3_p2
+     exog_qube: V_fv_p3,V_trend_prices_st_3_p3
+     endog: ret_lead
+
+plotting:
+     path: ./
