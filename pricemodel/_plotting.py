@@ -561,10 +561,10 @@ def mechanics_param_illustrations(params, simulation_output, simulation_input):
                                                  additional_restrictions=["qm10", "qv40", "cv40"])
 
     # - some manual cleaning. we cannot plot everything.
-    plot_1_cols_of_interest = basic_variables + list(plot_1_cols_of_interest[i] for i in [10, 7, 3, 0])
-    plot_2_cols_of_interest = basic_variables + list(plot_2_cols_of_interest[i] for i in [8, 6, 4, 2])
-    plot_3_cols_of_interest = basic_variables + list(plot_3_cols_of_interest[i] for i in [6, 5, 4, 3])
-    plot_4_cols_of_interest = basic_variables + list(plot_4_cols_of_interest[i] for i in [6, 4, 2, 1])
+    plot_1_cols_of_interest = basic_variables + list(plot_1_cols_of_interest[i] for i in [0, 1, 2, 5])
+    plot_2_cols_of_interest = basic_variables + list(plot_2_cols_of_interest[i] for i in [1, 3, 4, 5])
+    plot_3_cols_of_interest = basic_variables + list(plot_3_cols_of_interest[i] for i in [0, 1, 2, 3])
+    plot_4_cols_of_interest = basic_variables + list(plot_4_cols_of_interest[i] for i in [0, 1, 2, 3])
 
     # - styling
     line_styles = ["solid", "solid", "dashdot", "dashed", "dotted"]
@@ -572,7 +572,7 @@ def mechanics_param_illustrations(params, simulation_output, simulation_input):
     colors = ["green", "dimgrey", "dimgrey", "dimgrey", "dimgrey"]
 
     # - assemble plot
-    fig, axs = plt.subplots(1,1,squeeze=False)#params["plot_rows"], params["plot_cols"])
+    fig, axs = plt.subplots(2,2,squeeze=False)#params["plot_rows"], params["plot_cols"])
     # - plot price simulations
     for p in range(len(plot_1_cols_of_interest)):
         axs[0, 0].plot('t'
@@ -621,8 +621,8 @@ def mechanics_param_illustrations(params, simulation_output, simulation_input):
     # axs[1, 0].set_title(r"Panel (3): $q_m=0$, $q_v=40$, $c_m=40$", fontsize=10)
     # axs[1, 1].set_title(r"Panel (4): $q_m=10$, $q_v=40$, $c_v=40$", fontsize=10)
     axs[0, 0].set_title(r"Panel (1): $q_m=0$,$c_m=40$,$c_v=40$", fontsize=10)
-    axs[0, 1].set_title(r"Panel (2): $q_m=0$, $q_v=40$, $c_m=40$", fontsize=10)
-    axs[1, 0].set_title(r"Panel (3): $q_v=40$, $c_m=40$,$c_v=40$", fontsize=10)
+    axs[0, 1].set_title(r"Panel (3): $q_m=0$, $q_v=40$, $c_m=40$", fontsize=10)
+    axs[1, 0].set_title(r"Panel (2): $q_v=40$, $c_m=40$,$c_v=40$", fontsize=10)
     axs[1, 1].set_title(r"Panel (4): $q_m=10$, $q_v=40$, $c_v=40$", fontsize=10)
 
     # - legend
@@ -846,7 +846,6 @@ def make_parameter_illustration(path, fname, params):
 
     # -- save
     fig.savefig(path + fname +'.png', dpi=1600)
-
 
 def make_speculation_level_and_prices(path, fname, params):
 
